@@ -36,5 +36,8 @@ jobs:
         run: python scripts/verify_reference.py
       - name: Parse all R entry points
         run: Rscript -e 'for (p in list.files(".", "[.]R$", recursive=TRUE, full.names=TRUE)) parse(p)'
+      - name: Exercise one illustrative fitting pipeline
+        if: runner.os == 'Linux'
+        run: Rscript 02_RUN_EXAMPLE.R
       - name: Report runtime
         run: Rscript -e 'sessionInfo()'

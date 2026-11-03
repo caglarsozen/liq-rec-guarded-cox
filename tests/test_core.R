@@ -36,7 +36,7 @@ check("proposal labels mature before confirmation",max(guard$planned_end[split$p
 calendar <- as.Date("2011-01-01")+0:349
 panel <- data.table::CJ(asset=c("A","B","C"),sid=seq_along(calendar))
 panel[,date:=calendar[sid]];panel[,member:=TRUE]
-for(n in m$liq_feature_names())panel[,(n):=0]
+for(n in setdiff(m$liq_feature_names(),c("shock_cluster_share","shock_cluster_share_lag1")))panel[,(n):=0]
 panel[sid%in%seq(10L,280L,10L),lsi:=5]
 panel[sid==301L,lsi:=10]
 panel[asset=="A" & sid==304L,lsi:=2]

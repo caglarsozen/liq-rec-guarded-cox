@@ -8,7 +8,7 @@ The public interface packages the frozen model; it does not change its learning,
 2. **Simulation re-estimation:** available from code and installed R dependencies, without market data. Run the current pilot before the 600-replication full experiment. The example and quick tests are separate exercises.
 3. **Historical re-estimation:** additionally requires authorized access to the preserved market snapshot. Installing a matching ZIP is supported; the raw snapshot is not publicly redistributed here. A replacement download constitutes a different data vintage.
 
-The original R environment is recorded, rather than replaced with an invented dependency lockfile. `00_INSTALL.R` installs missing compatible packages; it does not claim to recreate every historical binary or platform. Record the resulting session information with `06_EXPORT_SPECIFICATION.R`. Numerical comparisons should account for platform/library differences while preserving the frozen scientific design.
+The original R environment is recorded, rather than replaced with an invented dependency lockfile. `00_INSTALL.R` installs missing compatible packages; it does not claim to recreate every historical binary or platform. `00_INSTALL_ARCHIVED.R` requests the directly recorded package versions and may require compilation tools. For example, the original run used glmnet 4.1-10; a contemporary compatibility test may install a later release. Record the resulting session information with `06_EXPORT_SPECIFICATION.R`. Numerical comparisons should account for platform/library differences while preserving the frozen scientific design.
 
 ## Outputs and resumption
 
@@ -22,4 +22,4 @@ The finite CITL score root solves the weighted offset-logistic intercept equatio
 
 ## Continuous verification
 
-GitHub Actions runs quick mathematical/information-flow regression tests and independent archived-record checks on Ubuntu and Windows with R 4.5.0. It does not run the 600-replication experiment or fit the 100-asset historical panel on every commit. The badge reports the actual workflow state; it is not evidence of universal forecasting superiority or new Monte Carlo replication.
+GitHub Actions runs quick mathematical/information-flow regression tests and independent archived-record checks on Ubuntu and Windows with R 4.5.0. On Ubuntu it also exercises one illustrative fitting replication with the oracle disabled. It does not run the 600-replication experiment or fit the 100-asset historical panel on every commit. The badge reports the actual workflow state; it is not evidence of universal forecasting superiority or new Monte Carlo replication.

@@ -18,6 +18,8 @@ source("01_QUICK_CHECK.R", encoding = "UTF-8")
 
 The same commands work with `Rscript` in a terminal. Quick checks cover endpoint coding, confirmation-day dating, horizon projection, AUC ties, validation-label maturation, the ridge fallback and calibration-in-the-large (CITL). They do not run the historical experiment or the 600-replication simulation.
 
+`00_INSTALL.R` leaves installed packages in place and installs missing compatible versions. The versions directly recorded for the original run are listed in `metadata/original_package_versions.csv`. For archival reproduction, `00_INSTALL_ARCHIVED.R` requests those recorded versions; it may require compilation tools. Restart R after changing installed versions. This recorded list is not represented as a complete binary environment lock.
+
 Independent verification of the supplied numerical records requires only the Python standard library:
 
 ```sh

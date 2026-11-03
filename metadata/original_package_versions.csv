@@ -1,0 +1,11 @@
+package,version
+data.table,1.18.6.1
+survival,3.8-3
+glmnet,4.1-10
+digest,0.6.37
+zip,2.3.3
+Matrix,1.7-3
+Rcpp,1.0.14
+iterators,1.0.14
+foreach,1.5.2
+shape,1.4.6.1
