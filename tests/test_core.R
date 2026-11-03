@@ -94,6 +94,8 @@ check("public profiles exclude inherited alternate inputs",all(vapply(isolated,f
 check("full profile retains the declared simulation sizes",isolated$full$simulation_reps==100L&&
   isolated$full$simulation_days==3600L&&isolated$full$oracle_batches==8L&&
   isolated$full$oracle_origins==2000L&&isolated$full$seed==5800000L)
+check("example profile describes one forecast-only replication",isolated$example$simulation_reps==1L&&
+  identical(isolated$example$simulation_scenarios,"non_PH")&&!isolated$example$public_oracle_enabled)
 check("public profiles separate result directories",length(unique(vapply(isolated,`[[`,character(1),"out_dir")))==4L)
 check("public summary routing stays in the experiment directory",all(vapply(names(isolated),function(stage) {
   z<-liq_public_environment(stage)

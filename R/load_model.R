@@ -58,8 +58,9 @@ liq_public_environment <- function(stage=c("pilot","full","market","example"), r
     LIQ_MEMBERSHIP_FILE="", LIQ_ASSET_METADATA="", LIQ_CONTEXT_FILE="",
     LIQ_ALLOW_MISSING_ASSETS="false", LIQ_PREFLIGHT_ONLY="false",
     LIQ_TRAIN_FREEZE="", LIQ_BOOT_REPS="1999",
-    LIQ_RUN_SENSITIVITY="false", LIQ_RUN_ROLLING="true",
-    LIQ_RUN_SIMULATION="false", LIQ_RUN_ABLATIONS="false", LIQ_RUN_PANEL_CHECKS="false",
+    LIQ_RUN_SENSITIVITY="false", LIQ_RUN_ROLLING=if(stage=="market")"true"else"false",
+    LIQ_RUN_SIMULATION=if(stage=="market")"false"else"true",
+    LIQ_RUN_ABLATIONS="false", LIQ_RUN_PANEL_CHECKS="false",
     LIQ_THREADS="1", LIQ_V470_SIM_DAYS="3600", LIQ_REQUIRE_SNAPSHOT_LOCK="true",
     LIQ_V480_PILOT_REPS="2", LIQ_V480_FULL_REPS="100",
     LIQ_V480_ORACLE_BATCHES="8",
@@ -94,6 +95,11 @@ liq_public_configuration <- function(stage=c("pilot","full","market","example"),
     cfg <- if(stage=="market")model$liq_config() else
       model$liq_v480_config(if(stage=="example")"pilot"else stage)
     cfg$out_dir <- Sys.getenv("LIQ_V480_OUT_DIR")
+    if(stage=="example") {
+      cfg$simulation_reps <- 1L
+      cfg$simulation_scenarios <- "non_PH"
+      cfg$public_oracle_enabled <- FALSE
+    }
     cfg
   })
 }

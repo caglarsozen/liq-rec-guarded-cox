@@ -15,8 +15,9 @@ These are public-interface reproducibility corrections. They do not change the o
 ## Verification scope
 
 - The independent Python check recalculates historical Brier loss and tie-adjusted AUC from 25,680 archived forecast rows. Its 75 checks retain 1,284 events and all 95 known 30-session negatives. Mean Brier scores remain 0.16672858953636924 for Cox and 0.1648407969768294 for LIQ-P.
-- All seven figure scripts were executed from archived numerical records. The separately named raw-training-reference skill columns agree with the reported historical values. These operations do not fit models.
-- The R quick suite contains 32 checks, including endpoint coding, horizon projection, stable calibration intercepts, ridge fallback score equations, purged selection, low-support Cox fallback, profile isolation and snapshot identities.
+- All seven figures were regenerated from archived numerical records. The separately named raw-training-reference skill columns agree with the reported historical values. These operations do not fit models.
+- Eight primary LIQ-P/LIQ-R versus Cox paired contrasts and their simultaneous calendar-group intervals were independently reconstructed in Python, using direct positive--negative AUC pairs and a Student reference. The largest difference from the stored estimates or interval endpoints was approximately 1.1e-16. This verifies numerical reproduction, not the coverage assumptions.
+- The R quick suite contains 33 checks, including endpoint coding, horizon projection, stable calibration intercepts, ridge fallback score equations, purged selection, low-support Cox fallback, profile isolation and snapshot identities.
 - Continuous verification exercises R 4.5.0 on Ubuntu and Windows, a complete illustrative non-proportional-hazards fit on each, all 12 pilot attempts with independent-oracle diagnostics on Ubuntu, and effective-profile export. Workflow results, rather than this list of checks alone, determine whether a commit passes.
 
 The inspection also traced training-prefix reconstruction, complete-window eligibility, proposal-label maturation, offset correction, candidate replay, tied AUC influence values, and the separation of ranking from probability evaluation. No additional change to the frozen scientific model was made from that inspection.
