@@ -2,8 +2,7 @@
 source(file.path("R","load_model.R"),encoding="UTF-8")
 m <- liq_load_model()
 root <- normalizePath(getwd(),winslash="/")
-answer <- liq_with_environment(c(LIQ_INSTALL_MISSING="false",LIQ_THREADS="1",
-  LIQ_V470_SIM_DAYS="3600",LIQ_V480_OUT_DIR=file.path(root,"results","example")), {
+answer <- liq_with_environment(liq_public_environment("example",root), {
   cfg <- m$liq_v480_config("pilot")
   cfg$out_dir <- file.path(root,"results","example")
   m$liq_packages(cfg)

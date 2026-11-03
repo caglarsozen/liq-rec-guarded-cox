@@ -14,6 +14,8 @@ The original R environment is recorded, rather than replaced with an invented de
 
 Pilot, full simulation, example and historical runs use separate `results/` subdirectories. The full run requires the current-source pilot receipt. Task identities include protocol information; changed inputs or incompatible receipts must not be combined with existing checkpoints. Unsupported attempts remain in status reports. No script tunes selection thresholds using the archived test scores.
 
+Public profiles pin the universe, session counts, oracle sizes and output routes and clear inherited alternative membership, metadata and context files. Previous environment values are restored even when a run errors. `06_EXPORT_SPECIFICATION.R` exports each effective profile separately as `configuration_<stage>.R` and `model_specification_<stage>.csv`; inspecting these profiles does not fit models. The historical entry point checks the four installed snapshot files against the published size/MD5 manifest before calling the frozen runner, which also verifies its original lock.
+
 Historical source fields named `BSS_historical` and `BSS_regime` use calibrated empirical references. For the paper's raw-training reference convention, run `scripts/summarize_run.py`; it exports separately named additional columns and leaves the archived fields untouched. The two references answer different comparisons.
 
 ## Calibration reporting
@@ -22,4 +24,4 @@ The finite CITL score root solves the weighted offset-logistic intercept equatio
 
 ## Continuous verification
 
-GitHub Actions runs quick mathematical/information-flow regression tests and independent archived-record checks on Ubuntu and Windows with R 4.5.0. On Ubuntu it also exercises one illustrative fitting replication with the oracle disabled. It does not run the 600-replication experiment or fit the 100-asset historical panel on every commit. The badge reports the actual workflow state; it is not evidence of universal forecasting superiority or new Monte Carlo replication.
+GitHub Actions runs quick mathematical/information-flow regression tests, independent archived-record checks and one illustrative fitting replication with the oracle disabled on Ubuntu and Windows with R 4.5.0. Ubuntu additionally runs the 12-attempt pilot across all six scenarios, including independent-oracle diagnostics and the pilot receipt. Both systems export all four effective public profiles. The workflow does not run the 600-replication experiment or fit the 100-asset historical panel on every commit. The badge reports the actual workflow state; it is not evidence of universal forecasting superiority or new Monte Carlo replication.

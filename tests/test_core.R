@@ -73,6 +73,57 @@ candidates <- list(pred=list(guard=pr,test=lapply(pr,function(z)z[1:5,,drop=FALS
 heads <- m$liq_heads(candidates,small,cfg)
 check("insufficient guard support returns Cox probabilities",identical(heads$test$LIQ_Brier,candidates$pred$test$Cox_raw))
 check("insufficient guard support returns Cox rankings",isTRUE(all.equal(heads$test$LIQ_Rank_Guard,candidates$pred$test$Cox_raw,check.attributes=FALSE)))
+
+# Public entry points isolate declared profiles from leftover session settings.
+contaminated <- c(LIQ_MEMBERSHIP_FILE="another_membership.csv",LIQ_ASSET_METADATA="another_metadata.csv",
+  LIQ_CONTEXT_FILE="another_context.csv",LIQ_SYMBOLS="SPY",LIQ_UNIVERSE="baseline29",
+  LIQ_ALLOW_MISSING_ASSETS="true",LIQ_REQUIRE_SNAPSHOT_LOCK="false",
+  LIQ_V480_PROGRESS_DIR="another_summary",LIQ_V480_SCENARIOS="signal",
+  LIQ_V480_FULL_REPS="1",LIQ_V480_ORACLE_BATCHES="4",LIQ_V480_ORACLE_ORIGINS="50")
+isolated <- liq_with_environment(contaminated, {
+  profiles <- lapply(c("pilot","full","market","example"),liq_public_configuration)
+  names(profiles) <- c("pilot","full","market","example")
+  check("profile inspection restores caller environment",
+        identical(unname(Sys.getenv(names(contaminated))),unname(contaminated)))
+  profiles
+})
+check("public profiles preserve all 100 assets",all(vapply(isolated,function(z)length(z$symbols)==100L,logical(1))))
+check("public profiles exclude inherited alternate inputs",all(vapply(isolated,function(z)
+  !nzchar(z$membership_file)&&!nzchar(z$asset_metadata_file)&&!nzchar(z$context_file)&&
+    !z$allow_missing_assets&&z$require_snapshot_lock,logical(1))))
+check("full profile retains the declared simulation sizes",isolated$full$simulation_reps==100L&&
+  isolated$full$simulation_days==3600L&&isolated$full$oracle_batches==8L&&
+  isolated$full$oracle_origins==2000L&&isolated$full$seed==5800000L)
+check("public profiles separate result directories",length(unique(vapply(isolated,`[[`,character(1),"out_dir")))==4L)
+check("public summary routing stays in the experiment directory",all(vapply(names(isolated),function(stage) {
+  z<-liq_public_environment(stage)
+  z[["LIQ_V480_PROGRESS_DIR"]]==isolated[[stage]]$out_dir
+},logical(1))))
+
+# A self-consistent replacement lock is not sufficient for exact reproduction.
+source(file.path("R","install_snapshot.R"),local=TRUE)
+local({
+  root <- tempfile("liq_snapshot_test_");dir.create(root)
+  on.exit(unlink(root,recursive=TRUE),add=TRUE)
+  paths <- c("data/frozen_ohlcv.csv","data/frozen_ohlcv.csv.lock.csv",
+             "data/data_provenance.csv","universe/universe_100.csv")
+  for(path in paths) {
+    dest <- file.path(root,path);dir.create(dirname(dest),recursive=TRUE,showWarnings=FALSE)
+    writeLines(paste("fixture",path),dest,useBytes=TRUE)
+  }
+  files <- file.path(root,paths)
+  manifest <- data.frame(path=paths,size=file.info(files)$size,md5=unname(tools::md5sum(files)))
+  dir.create(file.path(root,"metadata"))
+  write.csv(manifest,file.path(root,"metadata","expected_snapshot.csv"),row.names=FALSE)
+  succeeds <- function()isTRUE(tryCatch({liq_verify_public_snapshot(root);TRUE},error=function(e)FALSE))
+  check("published snapshot identity accepts exact files",succeeds())
+  writeLines("replacement observations",files[1],useBytes=TRUE)
+  writeLines(paste("replacement lock",unname(tools::md5sum(files[1]))),files[2],useBytes=TRUE)
+  check("replacement data and lock cannot redefine published identity",!succeeds())
+  writeLines(paste("fixture",paths[1]),files[1],useBytes=TRUE)
+  writeLines(paste("fixture",paths[2]),files[2],useBytes=TRUE)
+  unlink(files[3]);check("published snapshot requires provenance",!succeeds())
+})
 dir.create("results",showWarnings=FALSE)
 write.csv(data.frame(check=checks,pass=TRUE),"results/quick_checks.csv",row.names=FALSE)
 cat("\nQuick checks passed:",length(checks),"\nNo historical fits or full simulation experiment were rerun.\n")

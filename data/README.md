@@ -13,6 +13,8 @@ Expected local files are:
 
 The lock binds the observations, provenance and universe. It remains enabled in the public historical entry point. Access to the preserved vintage is necessary for exact historical reproduction; the repository alone does not supply that vintage.
 
+Before model estimation, `05_RUN_MARKET.R` also compares the installed observations, lock, provenance and universe with the sizes and MD5 hashes in `metadata/expected_snapshot.csv`. A different but internally consistent lock is insufficient. This is an exact-vintage reproducibility check, not a claim about provider accuracy or point-in-time membership.
+
 The CSV schema includes `asset`, `date`, `open`, `high`, `low`, `close`, `adjusted` and `volume`. Dates refer to observed sessions. Nonpositive volume and invalid price records are excluded according to the scientific source. Missing observations are not forward-filled. Volume is read explicitly to avoid integer conversion errors.
 
 The 29-asset baseline was preserved; its original retrieval date is unknown. The 71 additions were obtained on 23 October 2026. The panel is a retrospective convenience sample, not a point-in-time membership panel. Original provider corporate-action conventions were not independently reconstructed. Fresh provider downloads may differ and must be documented as a separate vintage rather than used to claim exact replication.

@@ -1,3 +1,22 @@
+liq_verify_public_snapshot <- function(root=getwd()) {
+  root <- normalizePath(root,winslash="/",mustWork=TRUE)
+  expected <- utils::read.csv(file.path(root,"metadata","expected_snapshot.csv"),stringsAsFactors=FALSE)
+  required <- c("data/frozen_ohlcv.csv","data/frozen_ohlcv.csv.lock.csv",
+                "data/data_provenance.csv","universe/universe_100.csv")
+  if(!all(c("path","size","md5")%in%names(expected)) ||
+     anyDuplicated(expected$path) || !setequal(expected$path,required))
+    stop("Malformed public snapshot manifest.")
+  paths <- file.path(root,expected$path)
+  present <- file.exists(paths) & !dir.exists(paths)
+  if(!all(present))stop("Install the authorized frozen snapshot using 08_INSTALL_SNAPSHOT.R first. Missing: ",
+                       paste(expected$path[!present],collapse=", "))
+  ok <- file.info(paths)$size==expected$size & unname(tools::md5sum(paths))==expected$md5
+  if(!all(ok))stop("Input differs from the published snapshot identities: ",
+                  paste(expected$path[!ok],collapse=", "),
+                  ". A different vintage requires a separately documented experiment.")
+  invisible(expected)
+}
+
 liq_install_snapshot <- function(archive,root=getwd()) {
   archive <- normalizePath(archive,winslash="/",mustWork=TRUE)
   root <- normalizePath(root,winslash="/",mustWork=TRUE)
@@ -34,6 +53,7 @@ liq_install_snapshot <- function(archive,root=getwd()) {
     dest <- file.path(root,expected$path[i]);dir.create(dirname(dest),recursive=TRUE,showWarnings=FALSE)
     if(!file.exists(dest) && !file.copy(sources[i],dest,overwrite=FALSE))stop("Copy failed: ",dest)
   }
+  liq_verify_public_snapshot(root)
   cat("Authorized frozen snapshot installed and verified. No provider download was performed.\n")
   invisible(expected)
 }

@@ -37,7 +37,11 @@ jobs:
       - name: Parse all R entry points
         run: Rscript -e 'for (p in list.files(".", "[.]R$", recursive=TRUE, full.names=TRUE)) parse(p)'
       - name: Exercise one illustrative fitting pipeline
-        if: runner.os == 'Linux'
         run: Rscript 02_RUN_EXAMPLE.R
+      - name: Exercise all six scenarios and independent pilot oracle
+        if: runner.os == 'Linux'
+        run: Rscript 03_RUN_PILOT.R
+      - name: Export the effective public profiles
+        run: Rscript 06_EXPORT_SPECIFICATION.R
       - name: Report runtime
         run: Rscript -e 'sessionInfo()'

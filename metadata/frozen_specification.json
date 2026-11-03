@@ -1,10 +1,10 @@
 {
-  "interface_version": "1.0.0",
+  "interface_version": "1.0.1",
   "frozen_model_version": "4.8.0",
   "source_file": "LIQ_REC_Fin_Major_Revision_v4_8_0.R",
   "source_md5": "ed19ad4035b799915163897644a8515c",
   "source_sha256": "9f0d78386a675b9349c3d63d38eddf86d7f855c751e43db9e20756ff2b4d86b3",
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "horizons": [
     5,
     10,

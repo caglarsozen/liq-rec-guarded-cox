@@ -16,7 +16,7 @@ source("00_START.R", encoding = "UTF-8")    # load functions without starting es
 source("01_QUICK_CHECK.R", encoding = "UTF-8")
 ```
 
-The same commands work with `Rscript` in a terminal. Quick checks cover endpoint coding, confirmation-day dating, horizon projection, AUC ties, validation-label maturation, the ridge fallback and calibration-in-the-large (CITL). They do not run the historical experiment or the 600-replication simulation.
+The same commands work with `Rscript` in a terminal. Quick checks cover endpoint coding, confirmation-day dating, horizon projection, AUC ties, validation-label maturation, the ridge fallback, calibration-in-the-large (CITL), session-setting isolation and pinned snapshot identities. They do not run the historical experiment or the 600-replication simulation.
 
 `00_INSTALL.R` leaves installed packages in place and installs missing compatible versions. The versions directly recorded for the original run are listed in `metadata/original_package_versions.csv`. For archival reproduction, `00_INSTALL_ARCHIVED.R` requests those recorded versions; it may require compilation tools. Restart R after changing installed versions. This recorded list is not represented as a complete binary environment lock.
 
@@ -34,7 +34,7 @@ python3 scripts/verify_reference.py
 | `03_RUN_PILOT.R` | Two replications in each of six scenarios; structural/numerical checks | No market data |
 | `04_RUN_SIMULATION.R` | 100 replications per scenario, 600 total; independent-oracle diagnostics | Successful current-source pilot |
 | `05_RUN_MARKET.R` | Primary historical fit and all nine regular rolling attempts | Authorized frozen market snapshot |
-| `06_EXPORT_SPECIFICATION.R` | Effective configuration and current runtime | Installed R dependencies |
+| `06_EXPORT_SPECIFICATION.R` | Effective pilot, full, market and example profiles, plus current R runtime | Installed R dependencies; no data or fitting |
 | `07_REPAIR_ARCHIVED_CITL.R` | Reporting-only repair of older full-run outputs | All 600 original fitted-rule files |
 | `08_INSTALL_SNAPSHOT.R` | Verify and install an authorized local snapshot archive | Online Resource 2 or the complete manuscript package |
 
@@ -52,6 +52,8 @@ The pilot and full cohorts have different seeds. The full cohort uses 3,600 sess
 ## Historical data
 
 Raw Yahoo Finance observations and provider response payloads are not distributed in this code repository. `data/README.md` explains how an authorized holder of the preserved snapshot can install it and verify its exact identity. The universe and expected file hashes are supplied. Historical estimation does not download or refresh provider data, does not substitute synthetic observations and does not accept a changed snapshot silently.
+
+The historical entry point verifies all four local input files against the published size/MD5 manifest before estimation, in addition to the model's internal snapshot-lock check. Replacing both observations and their lock cannot redefine the published vintage. Numbered experiment entry points use fixed profiles and temporarily clear inherited alternative membership, metadata and context inputs; the caller's environment is restored afterwards. A different universe or vintage requires a separately documented experiment using the lower-level functions.
 
 ```r
 Sys.setenv(LIQ_SNAPSHOT_ARCHIVE = "C:/path/to/Online_Resource_2_Replication.zip")
@@ -102,7 +104,7 @@ MD5    ed19ad4035b799915163897644a8515c
 
 Use the numbered entry points. They source the model with automatic execution disabled, set explicit output profiles, and register the archived ridge-prediction methods for use in an isolated environment. The public loader applies the previously verified bracketed-score CITL correction. It changes the reported intercept only: forecasting fits, calibration maps, probability outputs and deployment decisions are unaffected. Joint calibration intercept/slope diagnostics remain separate.
 
-Interface version **1.0.0** packages the frozen scientific model **4.8.0**; the interface version is not a new forecasting method. See `documentation/METHOD.md` for information flow and `documentation/REPRODUCTION.md` for the complete reproduction scope.
+Interface version **1.0.1** packages the frozen scientific model **4.8.0**; the interface version is not a new forecasting method. See `documentation/METHOD.md` for information flow, `documentation/REPRODUCTION.md` for the complete reproduction scope and `documentation/CODE_REVIEW.md` for the 4 November 2026 code inspection and corrections.
 
 ## Interpretation
 
