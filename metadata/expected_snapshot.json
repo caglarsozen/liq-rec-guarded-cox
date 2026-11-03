@@ -1,0 +1,30 @@
+[
+  {
+    "path": "data/frozen_ohlcv.csv",
+    "archive_path": "market_evidence/LIQ_REC_v480/data/frozen_ohlcv.csv",
+    "size": 46931525,
+    "md5": "3795dc0fe479fac471f716c97e7b1300",
+    "sha256": "0b23efbd9f5607e4ecedf0d07c98aba685a9f260719d125b48e5ac9faac95530"
+  },
+  {
+    "path": "data/frozen_ohlcv.csv.lock.csv",
+    "archive_path": "market_evidence/LIQ_REC_v480/data/frozen_ohlcv.csv.lock.csv",
+    "size": 328,
+    "md5": "1a0e21deafef51d4dd513313d4d9f7d4",
+    "sha256": "1f975f07680f5b0ff1fbd760b9a266ba3e0503a2b1fdd20d049dc4a37ccdaea6"
+  },
+  {
+    "path": "data/data_provenance.csv",
+    "archive_path": "market_evidence/LIQ_REC_v480/data/data_provenance.csv",
+    "size": 49220,
+    "md5": "06ddd3265271fe213428ba2cabb6f2bb",
+    "sha256": "53bc7083501c8d360a4c6fda00688992cce803014c4e687d547276fd9443ecb1"
+  },
+  {
+    "path": "universe/universe_100.csv",
+    "archive_path": "market_evidence/LIQ_REC_v480/universe/universe_100.csv",
+    "size": 10520,
+    "md5": "ddf1a440f3801821d6ff29e5f4ac909e",
+    "sha256": "a96f685232d82b58c47556bb6bfb6190e87b5ffd32dc8b72a1a3a361d222a544"
+  }
+]

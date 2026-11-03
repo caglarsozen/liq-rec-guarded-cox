@@ -1,0 +1,23 @@
+R version 4.5.0 (2025-04-11 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 10 x64 (build 19045)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] C
+
+time zone: Europe/Istanbul
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.18.6.1
+
+loaded via a namespace (and not attached):
+ [1] compiler_4.5.0   Matrix_1.7-3     tools_4.5.0      survival_3.8-3   Rcpp_1.0.14      codetools_0.2-20 splines_4.5.0   
+ [8] grid_4.5.0       iterators_1.0.14 foreach_1.5.2    digest_0.6.37    zip_2.3.3        shape_1.4.6.1    glmnet_4.1-10   
+[15] lattice_0.22-6  

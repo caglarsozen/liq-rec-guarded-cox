@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "Please cite this software and identify the exact Git commit used."
+title: "LIQ-REC guarded Cox recovery: replication software"
+version: 1.0.0
+date-released: 2026-11-03
+type: software
+authors:
+  - family-names: "Sözen"
+    given-names: "Çağlar"
+    affiliation: "Giresun University"
+    orcid: "https://orcid.org/0000-0002-3732-5058"
+  - family-names: "Sözen"
+    given-names: "Mervenur"
+    affiliation: "Ondokuz Mayıs University"
+    orcid: "https://orcid.org/0000-0001-5603-5382"
+repository-code: "https://github.com/caglarsozen/liq-rec-guarded-cox"
+url: "https://github.com/caglarsozen/liq-rec-guarded-cox"
+license: MIT
+abstract: >-
+  Replication software for Forecasting Liquidity-Stress Recovery with a Guarded
+  Cox Correction. The public interface preserves scientific model 4.8.0 and adds
+  safe entry points, a stable calibration-intercept reporting correction,
+  verification tools and archived numerical reference records.
+keywords:
+  - liquidity stress
+  - recovery forecasting
+  - survival analysis
+  - chronological validation
+  - probability calibration

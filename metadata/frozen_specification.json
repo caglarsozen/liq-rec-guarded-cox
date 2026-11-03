@@ -1,0 +1,42 @@
+{
+  "interface_version": "1.0.0",
+  "frozen_model_version": "4.8.0",
+  "source_file": "LIQ_REC_Fin_Major_Revision_v4_8_0.R",
+  "source_md5": "ed19ad4035b799915163897644a8515c",
+  "source_sha256": "9f0d78386a675b9349c3d63d38eddf86d7f855c751e43db9e20756ff2b4d86b3",
+  "date": "2026-11-03",
+  "horizons": [
+    5,
+    10,
+    20,
+    30
+  ],
+  "shock_quantile": 0.9,
+  "recovery_quantile": 0.6,
+  "confirmation_sessions": 3,
+  "maximum_followup": 30,
+  "minimum_origin_sid_difference": 6,
+  "calibration_guard_disjoint": true,
+  "guard_confirmation_purged": true,
+  "bootstrap_sessions": 45,
+  "full_simulation": {
+    "replications_per_scenario": 100,
+    "scenarios": [
+      "signal",
+      "no_regime",
+      "prevalence_shift",
+      "regime_reversal",
+      "non_PH",
+      "strong_dependence"
+    ],
+    "sessions": 3600,
+    "assets": 6,
+    "seed": 5800000,
+    "oracle_seed": 15800000,
+    "oracle_batches": 8,
+    "oracle_origins_per_batch": 2000
+  },
+  "reporting_patch": "Bracketed CITL score root; forecasts and selection unchanged",
+  "private_reconstruction_max_LSI_error": 1.0791367799356522e-13,
+  "private_reconstruction_event_count": 18904
+}

@@ -1,0 +1,10 @@
+* text=auto
+*.R text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.csv text eol=lf
+*.gz binary
+# Scientific hashes refer to the archived bytes, including original line endings.
+LIQ_REC_Fin_Major_Revision_v4_8_0.R -text
+R/repair_archived_citl.R -text

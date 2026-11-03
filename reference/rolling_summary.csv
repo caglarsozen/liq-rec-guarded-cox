@@ -1,0 +1,27 @@
+model,n_windows,Brier,AUC,scope
+Historical_raw,8,0.20591802399918133,0.5,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Regime_raw,8,0.20056059505973345,0.47293890787399961,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Logit_raw,8,0.18715056822309478,0.5536700033335733,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Hazard_raw,8,0.18703660160009311,0.57106928656807132,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Cox_raw,8,0.17233851972103728,0.61746109572668773,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Historical_cal,8,0.20470509560675179,0.5,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Regime_cal,8,0.2051867583549393,0.47614025861713444,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Logit_cal,8,0.19229958683905796,0.5438102654411584,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Hazard_cal,8,0.18412945915241474,0.55580371119313321,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Cox_cal,8,0.18372287019517006,0.58319438769950993,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+TRAIN_Mixture_raw,8,0.18438458131673274,0.58266185767623313,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+TRAIN_Mixture_cal,8,0.18400634218521994,0.5633315542393601,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+CoxResidual_raw,8,0.17206443395506454,0.61892704515286512,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+CoxResidual_cal,8,0.1839747431839806,0.58497048286216946,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Single_Brier_Guard,8,0.1812583202299225,0.61632748641509683,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Equal_Raw,8,0.1853363861383534,0.57644742080749334,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Equal_Calibrated,8,0.18802632679745634,0.56358963704214293,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Brier,8,0.17233851972103728,0.61746109572668773,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Legacy_Rank_Router,8,,0.49392639302847047,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+Single_Rank_Guard,8,,0.61053690704587915,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Rank_Guard,8,,0.61795536096862569,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Brier_v440,8,0.18096454087370062,0.61567780966403529,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Rank_v440,8,,0.6092780032096442,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Brier_v460,8,0.1812583202299225,0.61632748641509683,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Brier_v470,8,0.17233851972103728,0.61746109572668773,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE
+LIQ_Rank_v470,8,,0.61200285647205666,equal regular-window/horizon weights; historical retrospective analysis; no iid-window SE

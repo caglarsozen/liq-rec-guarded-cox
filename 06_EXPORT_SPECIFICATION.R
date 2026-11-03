@@ -1,0 +1,8 @@
+source(file.path("R","load_model.R"),encoding="UTF-8")
+m <- liq_load_model()
+cfg <- m$liq_config();m$liq_packages(cfg)
+dir.create("results",showWarnings=FALSE)
+write.csv(m$liq_model_spec(cfg),"results/model_specification.csv",row.names=FALSE)
+dput(cfg,file="results/configuration.R")
+capture.output(sessionInfo(),file="results/current_R_sessionInfo.txt")
+cat("Specification and current environment exported to results/.\n")

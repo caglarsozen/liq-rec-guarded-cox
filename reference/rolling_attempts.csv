@@ -1,0 +1,11 @@
+task,kind,status,resumed,reason,warnings
+primary,primary,completed,False,,
+rolling_20171211,regular,completed,False,,
+rolling_20181210,regular,insufficient_sample,False,CAL/GUARD class support failed: GUARD 30 285 3 No pooling or threshold relaxation.,
+rolling_20191206,regular,completed,False,,
+rolling_20201203,regular,completed,False,,
+rolling_20211201,regular,completed,False,,
+rolling_20221129,regular,completed,False,,
+rolling_20231128,regular,completed,False,,
+rolling_20241125,regular,completed,True,,
+rolling_20251125,regular,completed,True,,
